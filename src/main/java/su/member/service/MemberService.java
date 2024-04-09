@@ -1,5 +1,17 @@
 package su.member.service;
 
-public interface MemberService {
+import java.util.ArrayList;
 
+import su.member.dto.MemberDTO;
+
+public interface MemberService {
+	public ArrayList<MemberDTO> memberSelectAll();
+	
+	public MemberDTO memberSelect(int member_number);
+	
+	public MemberDTO memberInsert(MemberDTO memberDTO);
+	
+	public MemberDTO memberUpdate(MemberDTO memberDTO);
+	
+	public MemberDTO memberDelete(int member_number);
 }
