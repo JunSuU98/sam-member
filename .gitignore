@@ -35,3 +35,5 @@ replay_pid*
 .project
 .settings/
 .tern-project
+
+src/main/webapp/WEB-INF/lib/
