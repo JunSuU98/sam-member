@@ -8,5 +8,9 @@
 </head>
 <body>
 
+	<script type="text/javascript">
+		location.href="/MemberSelect.me";
+	</script>
+
 </body>
 </html>
