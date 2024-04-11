@@ -80,8 +80,54 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public MemberDTO memberSelect(int member_number) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		MemberDTO memberDTO = new MemberDTO();
 
-		return null;
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			
+			String sql = "select * from member";
+			sql += " where member_number = ? ";
+			log.info("상세조회 SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, member_number);
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				memberDTO.setMember_number(resultSet.getInt("member_number"));
+				memberDTO.setMember_create(resultSet.getString("member_create"));
+				memberDTO.setMember_update(resultSet.getString("member_update"));
+				memberDTO.setMember_status(resultSet.getString("member_status"));
+				memberDTO.setMember_id(resultSet.getString("member_id"));
+				memberDTO.setMember_password(resultSet.getString("member_password"));
+				memberDTO.setMember_name(resultSet.getString("member_name"));
+				memberDTO.setMember_birth(resultSet.getString("member_birth"));
+				memberDTO.setMember_email(resultSet.getString("member_email"));
+				memberDTO.setMember_phone(resultSet.getString("member_phone"));
+				memberDTO.setMember_rate(resultSet.getInt("member_rate"));
+				memberDTO.setMember_address(resultSet.getString("member_address"));
+			}
+			
+		} catch (Exception e) {
+			log.info("회원 상세 조회 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return memberDTO;
 	}
 
 	@Override
