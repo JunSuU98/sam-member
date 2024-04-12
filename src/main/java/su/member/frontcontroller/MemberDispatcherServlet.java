@@ -15,6 +15,8 @@ import su.member.control.Controller;
 import su.member.controller.MemberInsertController;
 import su.member.controller.MemberSelectController;
 import su.member.controller.MemberSelectDetailController;
+import su.member.controller.MemberUpdateController;
+import su.member.controller.MemberUpdateViewController;
 import su.member.handler.MemberHandlerAdapter;
 
 public class MemberDispatcherServlet extends HttpServlet {
@@ -61,7 +63,19 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("회원 가입 확인 - " + memberHandlerAdapter);
 		}
 		
+		else if(pathURL.equals("/MemberUpdateView.me")) {
+			controller = new MemberUpdateViewController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("정보 수정 뷰 확인 - " + memberHandlerAdapter);
+		}
 		
+		else if(pathURL.equals("/MemberUpdate.me")) {
+			controller = new MemberUpdateController();
+			memberHandlerAdapter = controller.execute(request, response);
+					
+			log.info("정보 수정 확인 - " + memberHandlerAdapter);
+		}
 		
 		
 		

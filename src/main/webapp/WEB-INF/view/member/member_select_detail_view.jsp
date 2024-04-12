@@ -38,7 +38,7 @@
 			<a href="/MemberSelect.me">메인화면</a>
 		  </button>
 		  <button type="button" class="btn btn-secondary">
-		  	<a href="#">내 정보 수정</a>
+		  	<a href="/MemberUpdateView.me?member_number=${memberDTO.member_number}">내 정보 수정</a>
 		  </button>
 		  <button type="button" class="btn btn-secondary">
 		  	<a href="#">회원 탈퇴</a>
