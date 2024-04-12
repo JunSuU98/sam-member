@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import su.member.control.Controller;
+import su.member.controller.MemberInsertController;
 import su.member.controller.MemberSelectController;
 import su.member.controller.MemberSelectDetailController;
 import su.member.handler.MemberHandlerAdapter;
@@ -46,7 +47,19 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("회원 상세 조회 확인 - " + memberHandlerAdapter);
 		}
 		
+		else if(pathURL.equals("/MemberInsertView.me")) {
+			memberHandlerAdapter = new MemberHandlerAdapter();
+			memberHandlerAdapter.setPath("/WEB-INF/view/member/member_insert_view.jsp");
+
+			log.info("회원가입 화면 뷰 확인 - " + memberHandlerAdapter);
+		}
 		
+		else if(pathURL.equals("/MemberInsert.me")) {
+			controller = new MemberInsertController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("회원 가입 확인 - " + memberHandlerAdapter);
+		}
 		
 		
 		

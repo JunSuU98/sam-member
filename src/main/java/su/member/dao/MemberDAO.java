@@ -91,6 +91,7 @@ public class MemberDAO implements MemberService {
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
 			
+			
 			String sql = "select * from member";
 			sql += " where member_number = ? ";
 			log.info("상세조회 SQL 확인 - " + sql);
@@ -132,6 +133,52 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public MemberDTO memberInsert(MemberDTO memberDTO) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			connection.setAutoCommit(false);
+
+			String sql = "insert into member (member_number, member_status, member_rate, member_id, member_password, member_name, member_email, member_phone, member_address, member_birth, member_create, member_update) ";
+			sql += " values (number_seq.NEXTVAL, 'active', 0, ?, ?, ?, ?, ?, ?, TO_DATE(?, 'YYYY-MM-DD'), TO_DATE(?, 'YYYY-MM-DD'), TO_DATE(?, 'YYYY-MM-DD') ) ";
+
+			log.info("가입 SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, memberDTO.getMember_id());
+			preparedStatement.setString(2, memberDTO.getMember_password());
+			preparedStatement.setString(3, memberDTO.getMember_name());
+			preparedStatement.setString(4, memberDTO.getMember_email());
+			preparedStatement.setString(5, memberDTO.getMember_phone());
+			preparedStatement.setString(6, memberDTO.getMember_address());
+			preparedStatement.setString(7, memberDTO.getMember_birth());
+			preparedStatement.setString(8, memberDTO.getMember_create());
+			preparedStatement.setString(9, memberDTO.getMember_create());
+			
+			int count = preparedStatement.executeUpdate();
+			
+			if (count > 0) {
+				connection.commit();
+				log.info("커밋되었습니다");
+			} else {
+				connection.rollback();
+				log.info("롤백되었습니다.");
+			}
+			
+		} catch (Exception e) {
+			log.info("회원 가입 실패 - " + e);
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 		return null;
 	}
