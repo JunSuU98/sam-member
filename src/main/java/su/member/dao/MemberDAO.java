@@ -237,6 +237,41 @@ public class MemberDAO implements MemberService {
 
 	@Override
 	public MemberDTO memberDelete(int member_number) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			
+			String sql = "delete from member ";
+			sql += " where member_number = ?";
+			log.info("delete SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, member_number);
+			
+			int count = preparedStatement.executeUpdate();
+			
+			if(count > 0) {
+				connection.commit();
+				log.info("커밋되었습니다.");
+			} else {
+				connection.rollback();
+				log.info("롤백되었습니다.");
+			}
+			
+		} catch (Exception e) {
+			log.info("회원 삭제 실패 - " + e);
+		} finally {
+			try {
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 		return null;
 	}

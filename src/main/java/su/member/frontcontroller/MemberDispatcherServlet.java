@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import su.member.control.Controller;
+import su.member.controller.MemberDeleteController;
 import su.member.controller.MemberInsertController;
 import su.member.controller.MemberSelectController;
 import su.member.controller.MemberSelectDetailController;
@@ -77,6 +78,20 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("정보 수정 확인 - " + memberHandlerAdapter);
 		}
 		
+		else if(pathURL.equals("/MemberDeleteView.me")) {
+			memberHandlerAdapter = new MemberHandlerAdapter();
+			memberHandlerAdapter.setPath("/WEB-INF/view/member/member_delete_view.jsp");
+			
+			log.info("회원 삭제 화면 뷰 확인 - " + memberHandlerAdapter);
+		}
+		
+		else if(pathURL.equals("/MemberDelete.me")) {
+			controller = new MemberDeleteController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("회원 삭제 확인 - " + memberHandlerAdapter);
+			
+		}
 		
 		
 		
