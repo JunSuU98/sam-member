@@ -8,9 +8,18 @@
 </head>
 <body>
 
-	<script type="text/javascript">
-		location.href="/MemberSelect.me";
-	</script>
+	<button type="button" class="btn btn-primary">
+		<a href="/MemberSelect.me">전체회원조회</a>
+	</button>
+	
+	<button type="button" class="btn btn-primary">
+		<a href="/MemberInsertView.me">회원가입</a>
+	</button>
+	
+	<button type="button" class="btn btn-primary">
+		<a href="/LoginView.me">회원가입</a>
+	</button>
+
 
 </body>
 </html>

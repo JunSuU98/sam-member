@@ -2,11 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-<c:set var="birthDate" value="${fn:substring(memberDTO.member_birth, 0, 10)}" />
-<c:set var="createDate" value="${fn:substring(memberDTO.member_create, 0, 10)}" />
-
     
 <!DOCTYPE html>
 <html>
@@ -75,7 +70,7 @@
 		  <div class="mb-3 row">
 			<label for="member_birth" class="col-sm-2 col-form-label">생년월일</label>
 			<div class="col-sm-10">
-			  <input type="date" class="form-control" id="member_birth" name="member_birth" value="${birthDate}">
+			  <input type="date" class="form-control" id="member_birth" name="member_birth" value="${memberDTO.member_birth}">
 			</div>
 		  </div>
 		  
@@ -92,7 +87,7 @@
 		</form>
 		
 		<div class="col-sm-10">
-		  <input type="text" class="form-control" id="member_create" name="member_create" value="${createDate}" readonly>
+		  <input type="text" class="form-control" id="member_create" name="member_create" value="${memberDTO.member_create}" readonly>
 		</div>
 
 

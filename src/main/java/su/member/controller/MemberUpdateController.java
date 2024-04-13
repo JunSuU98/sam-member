@@ -43,13 +43,13 @@ public class MemberUpdateController implements Controller {
 		memberDTO = memberDAO.memberUpdate(memberDTO);
 		log.info("update memberDTO - " + memberDTO);
 		
-//		request.setAttribute("memberDTO", memberDTO);
+		request.setAttribute("memberDTO", memberDTO);
 		
-//		MemberHandlerAdapter memberHandlerAdapter = new MemberHandlerAdapter();
-//		memberHandlerAdapter.setPath("/WEB-INF/view/member/member_update_view.jsp");
-//		return memberHandlerAdapter;
+		MemberHandlerAdapter memberHandlerAdapter = new MemberHandlerAdapter();
+		memberHandlerAdapter.setPath("/WEB-INF/view/member/member_update.jsp");
+		return memberHandlerAdapter;
 
-		return null;
+//		return null;
 	}
 
 }

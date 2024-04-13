@@ -42,13 +42,13 @@ public class MemberDAO implements MemberService {
 			while(resultSet.next()) {
 				MemberDTO memberDTO = new MemberDTO();
 				memberDTO.setMember_number(resultSet.getInt("member_number"));
-				memberDTO.setMember_create(resultSet.getString("member_create"));
-				memberDTO.setMember_update(resultSet.getString("member_update"));
+				memberDTO.setMember_create(resultSet.getString("member_create").substring(0, 10));
+				memberDTO.setMember_update(resultSet.getString("member_update").substring(0, 10));
 				memberDTO.setMember_status(resultSet.getString("member_status"));
 				memberDTO.setMember_id(resultSet.getString("member_id"));
 				memberDTO.setMember_password(resultSet.getString("member_password"));
 				memberDTO.setMember_name(resultSet.getString("member_name"));
-				memberDTO.setMember_birth(resultSet.getString("member_birth"));
+				memberDTO.setMember_birth(resultSet.getString("member_birth").substring(0, 10));
 				memberDTO.setMember_email(resultSet.getString("member_email"));
 				memberDTO.setMember_phone(resultSet.getString("member_phone"));
 				memberDTO.setMember_rate(resultSet.getInt("member_rate"));
@@ -103,13 +103,13 @@ public class MemberDAO implements MemberService {
 			
 			while(resultSet.next()) {
 				memberDTO.setMember_number(resultSet.getInt("member_number"));
-				memberDTO.setMember_create(resultSet.getString("member_create"));
-				memberDTO.setMember_update(resultSet.getString("member_update"));
+				memberDTO.setMember_create(resultSet.getString("member_create").substring(0, 10));
+				memberDTO.setMember_update(resultSet.getString("member_update").substring(0, 10));
 				memberDTO.setMember_status(resultSet.getString("member_status"));
 				memberDTO.setMember_id(resultSet.getString("member_id"));
 				memberDTO.setMember_password(resultSet.getString("member_password"));
 				memberDTO.setMember_name(resultSet.getString("member_name"));
-				memberDTO.setMember_birth(resultSet.getString("member_birth"));
+				memberDTO.setMember_birth(resultSet.getString("member_birth").substring(0, 10));
 				memberDTO.setMember_email(resultSet.getString("member_email"));
 				memberDTO.setMember_phone(resultSet.getString("member_phone"));
 				memberDTO.setMember_rate(resultSet.getInt("member_rate"));
@@ -188,12 +188,12 @@ public class MemberDAO implements MemberService {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
 		try {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
-			
+			connection.setAutoCommit(false);
+
 			String sql = "update member set member_id = ?, member_password = ?, member_name = ?, member_email = ?, ";
 			sql += "member_phone = ?, member_address = ?, member_birth = TO_DATE(?, 'YYYY-MM-DD'), member_update = TO_DATE(?, 'YYYY-MM-DD') ";
 			sql += "where member_number = ? ";
@@ -244,6 +244,7 @@ public class MemberDAO implements MemberService {
 			Context context = new InitialContext();
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
 			connection = dataSource.getConnection();
+			connection.setAutoCommit(false);
 			
 			String sql = "delete from member ";
 			sql += " where member_number = ?";
