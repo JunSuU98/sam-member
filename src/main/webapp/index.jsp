@@ -13,21 +13,6 @@
 </head>
 <body>
 
-	<button type="button" class="btn btn-primary">
-		<a href="/MemberSelect.me">전체회원조회</a>
-	</button>
-	
-	<button type="button" class="btn btn-primary">
-		<a href="/MemberInsertView.me">회원가입</a>
-	</button>
-	
-	<button type="button" class="btn btn-primary">
-		<a href="/LoginView.me">로그인</a>
-	</button>
-	
-	<button type="button" class="btn btn-primary">
-		<a href="/Logout.me">로그아웃</a>
-	</button>
 	
 	<c:choose>
 		<c:when test="${not empty sessionScope.member_name}">

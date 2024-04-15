@@ -12,6 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import su.login.controller.LoginController;
+import su.login.controller.LogoutController;
 import su.member.control.Controller;
 import su.member.controller.MemberDeleteController;
 import su.member.controller.MemberInsertController;
@@ -108,7 +109,12 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("로그인 확인 - " + memberHandlerAdapter);
 		}
 		
-		
+		else if(pathURL.equals("/Logout.me")) {
+			controller = new LogoutController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("로그아웃 확인 - " + memberHandlerAdapter);
+		}
 		
 		
 		

@@ -35,7 +35,7 @@
 
 		<div class="btn-group" role="group" aria-label="Basic example">
 		  <button type="button" class="btn btn-secondary">
-			<a href="/MemberSelect.me">메인화면</a>
+			<a href="./index.jsp">메인화면</a>
 		  </button>
 		  <button type="button" class="btn btn-secondary">
 		  	<a href="/MemberUpdateView.me?member_number=${memberDTO.member_number}">내 정보 수정</a>
