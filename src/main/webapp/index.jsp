@@ -22,12 +22,12 @@
 					<!-- 관리자로 로그인한 상태의 처리 -->
 					<h2>관리자 로그인 성공!!</h2>
 					
-					<button type="button" class="btn btn-primary">
-						<a href="/MemberSelect.me">전체회원조회</a>
+					<button type="button" class="btn btn-primary" onclick="location.href='/MemberSelect.me'">
+						전체회원조회
 					</button>
 
-					<button type="button" class="btn btn-primary">
-						<a href="/Logout.me">로그아웃</a>
+					<button type="button" class="btn btn-primary" onclick="location.href='/Logout.me'">
+						로그아웃
 					</button>
 
 				</c:when>
@@ -35,12 +35,12 @@
 					<!-- 일반 사용자로 로그인한 상태의 처리 -->
 					<h2>일반 회원 로그인 성공!!</h2>
 					
-					<button type="button" class="btn btn-primary">
-						<a href="/MemberSelectDetail.me?member_number=${sessionScope.member_number}">마이페이지</a>
+					<button type="button" class="btn btn-primary" onclick="location.href='/MemberSelectDetail.me?member_number=${sessionScope.member_number}'">
+						마이페이지
 					</button>
 					
-					<button type="button" class="btn btn-primary">
-						<a href="/Logout.me">로그아웃</a>
+					<button type="button" class="btn btn-primary" onclick="location.href='/Logout.me'">
+						로그아웃
 					</button>
 
 				</c:otherwise>
@@ -50,12 +50,12 @@
 			<!-- 로그인 되지 않은 상태의 처리 -->
 			<h2>로그인 되어있지 않습니다</h2>
 			
-			<button type="button" class="btn btn-primary">
-				<a href="/MemberInsertView.me">회원가입</a>
+			<button type="button" class="btn btn-primary" onclick="location.href='/MemberInsertView.me'">
+				회원가입
 			</button>
 			
-			<button type="button" class="btn btn-primary">
-				<a href="/LoginView.me">로그인</a>
+			<button type="button" class="btn btn-primary" onclick="location.href='/LoginView.me'">
+				로그인
 			</button>
 
 		</c:otherwise>

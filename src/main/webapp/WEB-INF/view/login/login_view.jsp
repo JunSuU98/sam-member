@@ -21,15 +21,25 @@
 		<form action="/Login.me" method="post">
 
 			<label for="member_id" class="form-label">아이디</label>
-			<input type="text" id="member_id" name="member_id" class="form-control" aria-describedby="passwordHelpBlock">
+			<input type="text" id="member_id" name="member_id" class="form-control">
 				
 			<label for="member_password" class="form-label">Password</label>
-			<input type="password" id="member_password" name="member_password" class="form-control" aria-describedby="passwordHelpBlock">
+			<input type="password" id="member_password" name="member_password" class="form-control">
 				
 			<button type="submit" class="btn btn-primary">로그인</button>
 			<button type="reset" class="btn btn-danger">취소</button>
 			
 		</form>
+	
+	
+		<div class="btn-group" role="group" aria-label="Basic example">
+		  <button type="button" class="btn btn-secondary" onclick="location.href='/IdSearchView.me'">
+			아이디 찾기
+		  </button>
+		  <button type="button" class="btn btn-secondary" onclick="location.href='/PasswordSearchView.me'">
+			비밀번호 찾기		  
+		  </button>
+		</div>
 	
 	</main>
 

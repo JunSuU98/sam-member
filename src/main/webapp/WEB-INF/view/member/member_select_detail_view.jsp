@@ -34,14 +34,14 @@
 		</div>
 
 		<div class="btn-group" role="group" aria-label="Basic example">
-		  <button type="button" class="btn btn-secondary">
-			<a href="./index.jsp">메인화면</a>
+		  <button type="button" class="btn btn-secondary" onclick="location.href='./index.jsp'">
+			메인화면
 		  </button>
-		  <button type="button" class="btn btn-secondary">
-		  	<a href="/MemberUpdateView.me?member_number=${memberDTO.member_number}">내 정보 수정</a>
+		  <button type="button" class="btn btn-secondary" onclick="location.href='/MemberUpdateView.me?member_number=${memberDTO.member_number}'">
+		  	내 정보 수정
 		  </button>
-		  <button type="button" class="btn btn-secondary">
-		  	<a href="/MemberDeleteView.me?member_number=${memberDTO.member_number}">회원 탈퇴</a>
+		  <button type="button" class="btn btn-secondary" onclick="location.href='/MemberDeleteView.me?member_number=${memberDTO.member_number}'">
+		  	회원 탈퇴
 		  </button>
 		</div>	
 

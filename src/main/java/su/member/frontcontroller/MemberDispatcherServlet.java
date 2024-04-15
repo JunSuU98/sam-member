@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import su.login.controller.IdSearchController;
 import su.login.controller.LoginController;
 import su.login.controller.LogoutController;
+import su.login.controller.PasswordSearchController;
 import su.member.control.Controller;
 import su.member.controller.MemberDeleteController;
 import su.member.controller.MemberInsertController;
@@ -116,7 +118,36 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("로그아웃 확인 - " + memberHandlerAdapter);
 		}
 		
+		else if(pathURL.equals("/IdSearchView.me")) {
+			memberHandlerAdapter = new MemberHandlerAdapter();
+			memberHandlerAdapter.setPath("/WEB-INF/view/login/id_search_view.jsp");
+			
+			log.info("아이디 찾기 뷰 확인 - " + memberHandlerAdapter);
+		}
 		
+		else if(pathURL.equals("/IdSearch.me")) {
+			controller = new IdSearchController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("아이디 찾기 확인 - " + memberHandlerAdapter);
+			
+		}
+		
+		else if(pathURL.equals("/PasswordSearchView.me")) {
+			memberHandlerAdapter = new MemberHandlerAdapter();
+			memberHandlerAdapter.setPath("/WEB-INF/view/login/password_search_view.jsp");
+			
+			log.info("비밀번호 찾기 뷰 확인 - " + memberHandlerAdapter);
+			
+		}
+		
+		else if(pathURL.equals("/PasswordSearch.me")) {
+			controller = new PasswordSearchController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("비밀번호 찾기 - " + memberHandlerAdapter);
+			
+		}
 		
 		
 		if(memberHandlerAdapter != null) {

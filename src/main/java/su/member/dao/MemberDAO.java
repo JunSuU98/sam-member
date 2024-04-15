@@ -330,4 +330,58 @@ public class MemberDAO implements MemberService {
 		return memberDTO;
 	}
 
+	@Override
+	public MemberDTO memberSearchId(MemberDTO memberDTO) {
+
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			
+			String sql = "select member_id from member ";
+			sql += "where member_name = ? and member_birth = ? and member_phone = ? ";
+			
+			log.info("id search SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			
+			preparedStatement.setString(1, memberDTO.getMember_name());
+			preparedStatement.setString(2, memberDTO.getMember_birth());
+			preparedStatement.setString(3, memberDTO.getMember_phone());
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				memberDTO.setMember_id(resultSet.getString("member_id"));
+				
+				log.info("조회 아이디 확인 - " + memberDTO.getMember_id());
+			}
+		} catch (Exception e) {
+			log.info("아이디 찾기 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return memberDTO;
+	}
+
+	@Override
+	public MemberDTO memberSearchPassword(MemberDTO memberDTO) {
+		
+		
+		
+		
+		return null;
+	}
+
 }

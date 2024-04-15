@@ -46,11 +46,10 @@ public class MemberInsertController implements Controller {
 		
 		log.info("회원 정보 등록");
 
-//		MemberHandlerAdapter memberHandlerAdapter = new MemberHandlerAdapter();
-//		memberHandlerAdapter.setPath("/WEB-INF/view/member/member_insert.jsp");
+		MemberHandlerAdapter memberHandlerAdapter = new MemberHandlerAdapter();
+		memberHandlerAdapter.setPath("/WEB-INF/view/member/member_insert.jsp");
 
-//		return memberHandlerAdapter;
-		return null;
+		return memberHandlerAdapter;
 	}
 
 }
