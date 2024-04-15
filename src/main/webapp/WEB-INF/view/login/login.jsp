@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그인 성공 페이지</title>
 </head>
 <body>
+
+	 
+	<h2>${sessionScope.name} 님 안녕하세요</h2>
+	
 
 </body>
 </html>

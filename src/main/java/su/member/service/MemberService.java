@@ -14,4 +14,6 @@ public interface MemberService {
 	public MemberDTO memberUpdate(MemberDTO memberDTO);
 	
 	public MemberDTO memberDelete(int member_number);
+	
+	public MemberDTO memberLogin(MemberDTO memberDTO);
 }

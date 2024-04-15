@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import su.login.controller.LoginController;
 import su.member.control.Controller;
 import su.member.controller.MemberDeleteController;
 import su.member.controller.MemberInsertController;
@@ -92,6 +93,23 @@ public class MemberDispatcherServlet extends HttpServlet {
 			log.info("회원 삭제 확인 - " + memberHandlerAdapter);
 			
 		}
+		
+		else if(pathURL.equals("/LoginView.me")) {
+			memberHandlerAdapter = new MemberHandlerAdapter();
+			memberHandlerAdapter.setPath("/WEB-INF/view/login/login_view.jsp");
+			
+			log.info("로그인 화면 뷰 확인 - " + memberHandlerAdapter);
+		}
+		
+		else if(pathURL.equals("/Login.me")) {
+			controller = new LoginController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("로그인 확인 - " + memberHandlerAdapter);
+		}
+		
+		
+		
 		
 		
 		

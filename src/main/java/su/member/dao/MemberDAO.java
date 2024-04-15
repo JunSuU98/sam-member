@@ -277,4 +277,57 @@ public class MemberDAO implements MemberService {
 		return null;
 	}
 
+	@Override
+	public MemberDTO memberLogin(MemberDTO memberDTO) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			
+			String sql = "select * from member ";
+			sql += "where member_id = ? ";
+			log.info("login SQL 확인 - " + sql);
+
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, memberDTO.getMember_id());
+			
+			resultSet = preparedStatement.executeQuery();
+
+			if(resultSet.next()) {
+				memberDTO.setMember_number(resultSet.getInt("member_number"));
+				memberDTO.setMember_name(resultSet.getString("member_name"));
+				memberDTO.setMember_id(resultSet.getString("member_id"));
+				log.info("회원 아이디 확인 - " + resultSet.getString("member_id"));
+				
+				if(resultSet.getString("member_password").equals(memberDTO.getMember_password())) {
+					memberDTO.setMember_password(resultSet.getString("member_password"));
+					log.info("회원 비밀번호 확인 - " + resultSet.getString("member_password"));
+				} else {
+					memberDTO.setMember_password("");
+				} 
+			} else {
+				memberDTO.setMember_id("");
+			}
+			
+			
+		} catch (Exception e) {
+			log.info("로그인 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return memberDTO;
+	}
+
 }
