@@ -34,6 +34,10 @@
 					회원가입 하러가기
 				</button>
 
+				<button type="button" class="btn btn-primary" onclick="location.href='./index.jsp'">
+					메인화면으로 돌아가기
+				</button>
+
 
 			</c:otherwise>
 		

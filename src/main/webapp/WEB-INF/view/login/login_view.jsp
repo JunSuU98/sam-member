@@ -27,12 +27,15 @@
 			<input type="password" id="member_password" name="member_password" class="form-control">
 				
 			<button type="submit" class="btn btn-primary">로그인</button>
-			<button type="reset" class="btn btn-danger">취소</button>
+			<button type="reset" class="btn btn-danger" onclick="window.history.back()">취소</button>
 			
 		</form>
 	
 	
 		<div class="btn-group" role="group" aria-label="Basic example">
+		  <button type="button" class="btn btn-secondary" onclick="location.href='/MemberInsertView.me'">
+			회원가입
+		  </button>
 		  <button type="button" class="btn btn-secondary" onclick="location.href='/IdSearchView.me'">
 			아이디 찾기
 		  </button>

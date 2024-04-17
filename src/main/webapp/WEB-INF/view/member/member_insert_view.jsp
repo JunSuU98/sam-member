@@ -84,7 +84,7 @@
 		  <div class="mb-3 row">
 			<label for="member_email" class="col-sm-2 col-form-label">이메일</label>
 			<div class="col-sm-10">
-			  <input type="text" class="form-control" id="member_email" name="member_email">
+			  <input type="email" class="form-control" id="member_email" name="member_email">
 			</div>
 		  </div>
 		  
@@ -116,7 +116,7 @@
 
 		  <div class="col-auto">
 			<button type="submit" class="btn btn-primary mb-3">회원가입</button>
-			<button type="reset" class="btn btn-danger mb-3">취소</button>
+			<button type="reset" class="btn btn-danger mb-3" onclick="window.history.back()">취소</button>
 		  </div> 
 		  
 		</form>

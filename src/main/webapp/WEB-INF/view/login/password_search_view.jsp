@@ -41,7 +41,7 @@
 		  </div>
 		  
 		  <button type="submit" class="btn btn-primary">확인</button>
-		  <button type="reset" class="btn btn-danger">취소</button>
+		  <button type="reset" class="btn btn-danger" onclick="window.history.back()">취소</button>
 
 
 		</form>

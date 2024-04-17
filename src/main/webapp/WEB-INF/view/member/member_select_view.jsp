@@ -60,7 +60,7 @@
 			  </tbody>
 		</table>
 		
-	
+		<button type="button" class="btn btn-primary mb-3" onclick="window.history.back()">메인 화면으로</button>
 	</main>
 
 
