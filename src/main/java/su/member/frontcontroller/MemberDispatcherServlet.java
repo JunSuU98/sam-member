@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import su.login.controller.IdCheckController;
 import su.login.controller.IdSearchController;
 import su.login.controller.LoginController;
 import su.login.controller.LogoutController;
@@ -147,6 +148,13 @@ public class MemberDispatcherServlet extends HttpServlet {
 			
 			log.info("비밀번호 찾기 - " + memberHandlerAdapter);
 			
+		}
+		
+		else if(pathURL.equals("/IdCheck.me")){
+			controller = new IdCheckController();
+			memberHandlerAdapter = controller.execute(request, response);
+			
+			log.info("아이디 중복 확인 - " + memberHandlerAdapter);
 		}
 		
 		

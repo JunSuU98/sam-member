@@ -20,4 +20,6 @@ public interface MemberService {
 	public MemberDTO memberSearchId(MemberDTO memberDTO);
 	
 	public MemberDTO memberSearchPassword(MemberDTO memberDTO);
+	
+	public int memberIdCheck(String member_id);
 }

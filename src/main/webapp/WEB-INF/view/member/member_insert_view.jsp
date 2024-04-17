@@ -9,6 +9,42 @@
 <link rel="stylesheet" type="text/css" href="./css/global.css">
 <script src="./js/jquery-3.5.1.min.js" type="text/javascript"></script>
 <script src="./js/bootstrap.min.js" type="text/javascript"></script>
+<script src="./js/validity.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		$("#db_id_check").click(function() {
+			var id = $('#member_id').val();
+			$.ajax({
+				url : './IdCheck.me',
+				type : 'get',
+				
+				data : {
+					member_id : id
+				},
+				success : function(result){
+					console.log("아이디 값 - " + result);
+					
+					if($.trim(result) == 1){
+						alert("이미 등록된 아이디입니다.");
+						$('member_id').focus();
+					} else {
+						alert("사용할 수 있는 아이디입니다.");
+						$('#id_check').val("1");
+						$('#member_password').focus();
+					}
+				}
+			});
+		});
+		
+	});
+	
+	$("input[id='member_id']").on("change", function(){
+		$("#id_check").val(0);
+	});
+
+</script>
+
 </head>
 <body>
 
@@ -18,19 +54,23 @@
 	
 	<main>
 	
-		<form action="/MemberInsert.me" method="post">
+		<form action="/MemberInsert.me" method="post" id="sign_up_form">
 		
 		  <div class="mb-3 row">
 			<label for="member_id" class="col-sm-2 col-form-label">아이디</label>
 			<div class="col-sm-10">
 			  <input type="text" class="form-control" id="member_id" name="member_id">
 			</div>
+
+			<button type="button" class="btn btn-primary" id="db_id_check">중복확인</button>
+			<input type="hidden" class="form-control" id="id_check" name="id_check">
+
 		  </div>	
 		
 		  <div class="mb-3 row">
 			<label for="inputPassword" class="col-sm-2 col-form-label">비밀번호</label>
 			<div class="col-sm-10">
-			  <input type="password" class="form-control" id="inputPassword" name="member_password">
+			  <input type="password" class="form-control" id="member_password" name="member_password">
 			</div>
 		  </div>	
 		

@@ -422,4 +422,47 @@ public class MemberDAO implements MemberService {
 		return memberDTO;
 	}
 
+	@Override
+	public int memberIdCheck(String member_id) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		int idCheck = 0;
+		
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/jdbc");
+			connection = dataSource.getConnection();
+			
+			String sql = "select * from member ";
+			sql += "where member_id = ? ";
+			log.info("아이디 중복확인 SQL 확인 - " + sql);
+			
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, member_id);
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next() || member_id.equals("")) {
+				idCheck = 1;
+			} else {
+				idCheck = 0;
+			}
+			
+		} catch (Exception e) {
+			log.info("회원 아이디 체크 실패 - " + e);
+		} finally {
+			try {
+				resultSet.close();
+				preparedStatement.close();
+				connection.close();
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return idCheck;
+	}
+
 }
