@@ -25,6 +25,7 @@ public class IdCheckController implements Controller {
 		MemberDAO memberDAO = new MemberDAO();
 		
 		int result = memberDAO.memberIdCheck(member_id);
+		System.out.println("result - " + result);
 		
 		if(result == 1) {
 			log.info("존재하는 아이디 - " + member_id);
@@ -40,10 +41,7 @@ public class IdCheckController implements Controller {
 			e.printStackTrace();
 		}
 		
-		MemberHandlerAdapter memberHandlerAdapter = new MemberHandlerAdapter();
-		memberHandlerAdapter.setPath("WEB-INF/view/member/member_insert_view.jsp");
-		
-		return memberHandlerAdapter;
+		return null;
 	}
 
 }
